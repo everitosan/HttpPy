@@ -1,7 +1,7 @@
 # Python
 import unittest
 # Modules
-from ParseRequestFile import parse as parse_file
+from ParseRequest import parse_file
 
 
 requests = parse_file("test/test.request")

@@ -14,7 +14,7 @@ def __normalize_request(line):
     }
 
 
-def parse(file_path):
+def parse_file(file_path):
     file = open(file_path)
 
     should_parse_request = False
@@ -53,3 +53,13 @@ def parse(file_path):
             should_end_request = False
 
     return requests
+
+def parse_args(args):
+    req = {
+        "type": args.t,
+        "url": args.u
+    }
+    if args.d:
+        req["data"] = json.loads(args.d)
+    return req
+

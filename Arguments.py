@@ -30,7 +30,7 @@ def parse():
         "--d",
         "--data",
         type=str,
-        required=__is_param_absent("--i", "--input")
+        required=False
     )
 
 
