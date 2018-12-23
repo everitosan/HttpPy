@@ -1,0 +1,16 @@
+## Example of request, every request starts with a comment
+GET http://127.0.0.1:8000
+
+## This is a post request without data
+POST http://127.0.0.1:8000
+{}
+
+## This is a post with data
+POST http://127.0.0.1:8000
+{
+  "user": "ever",
+  "password": "12345"
+}
+
+## Another get request
+GET http://127.0.0.1:8000
