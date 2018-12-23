@@ -18,6 +18,7 @@ def make_requests(requests_list):
                 res = req_fn(url)
         print(res)
 
+
 def main():
     args = parse_arguments()
     if args.i:
@@ -26,6 +27,7 @@ def main():
         requests = [parse_req_args(args)]
 
     make_requests(requests)
+
 
 if __name__ == "__main__":
     try:

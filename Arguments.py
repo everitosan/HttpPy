@@ -6,13 +6,14 @@ def __is_param_absent(abrv, cplt):
     is_in = abrv in sys.argv or cplt in sys.argv
     return not is_in
 
+
 def parse():
     parser = argparse.ArgumentParser(description="Parse arguments to make requests")
     parser.add_argument(
         "--i",
         "--input",
         type=str,
-        required=__is_param_absent( "--t", "--type")
+        required=__is_param_absent("--t", "--type")
     )
     parser.add_argument(
         "--t",
@@ -32,6 +33,5 @@ def parse():
         type=str,
         required=False
     )
-
 
     return parser.parse_args()

@@ -54,6 +54,7 @@ def parse_file(file_path):
 
     return requests
 
+
 def parse_args(args):
     req = {
         "type": args.t,
@@ -62,4 +63,3 @@ def parse_args(args):
     if args.d:
         req["data"] = json.loads(args.d)
     return req
-
