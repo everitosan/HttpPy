@@ -52,5 +52,4 @@ def parse(file_path):
             should_parse_request = False
             should_end_request = False
 
-    print(requests)
     return requests
