@@ -9,7 +9,7 @@ If you need to send several requests consecutively, you can use a file as an inp
 ```
 (env)$ python --i example.request
 ```  
-*An example of a post request may be*  
+*An example of a post request inside example.request may be:*  
 ```
 ## This comment is important to parse correctly the request
 POST http://127.0.0.1:8000
