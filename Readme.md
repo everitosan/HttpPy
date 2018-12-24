@@ -7,8 +7,18 @@ Python based HttpClient for more comfortable requests.
 If you need to send several requests consecutively, you can use a file as an input.
  - --i/--input = Route to open the file
 ```
-(env)$ python --i "example.request"
+(env)$ python --i example.request
+```  
+*An example of a post request may be*  
 ```
+## This comment is important to parse correctly the request
+POST http://127.0.0.1:8000
+{
+  "data": "data one",
+  "data 2": "data two"
+}
+```  
+
 #### Process with arguments  
 Sometimes you may just want to send a single request. To achieve that there are some flags ready to use.
  - --t/--type = The request verb to use
