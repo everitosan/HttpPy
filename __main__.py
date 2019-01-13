@@ -1,7 +1,9 @@
 import requests
 from Arguments import parse as parse_arguments
 from ParseRequest import parse_file, parse_args as parse_req_args
+from Logger import log_request
 
+args = parse_arguments()
 
 def make_requests(requests_list):
     for req in requests_list:
@@ -16,13 +18,14 @@ def make_requests(requests_list):
                 res = req_fn(url=url, data=data)
             except KeyError:
                 res = req_fn(url)
-        print(res)
+        # print(dir(res))
+        log_request(res, args.verbose)
 
 
 def main():
-    args = parse_arguments()
-    if args.i:
-        requests = parse_file(args.i)
+    print(args)
+    if args.input:
+        requests = parse_file(args.input)
     else:
         requests = [parse_req_args(args)]
 

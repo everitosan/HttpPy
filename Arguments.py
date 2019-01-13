@@ -10,27 +10,34 @@ def __is_param_absent(abrv, cplt):
 def parse():
     parser = argparse.ArgumentParser(description="Parse arguments to make requests")
     parser.add_argument(
-        "--i",
+        "-i",
         "--input",
         type=str,
-        required=__is_param_absent("--t", "--type")
+        required=__is_param_absent("-t", "--type")
     )
     parser.add_argument(
-        "--t",
+        "-t",
         "--type",
         type=str,
-        required=__is_param_absent("--i", "--input")
+        required=__is_param_absent("-i", "--input")
     )
     parser.add_argument(
-        "--u",
+        "-u",
         "--url",
         type=str,
-        required=__is_param_absent("--i", "--input")
+        required=__is_param_absent("-i", "--input")
     )
     parser.add_argument(
-        "--d",
+        "-d",
         "--data",
         type=str,
+        required=False
+    )
+
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
         required=False
     )
 
