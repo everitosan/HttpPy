@@ -111,7 +111,6 @@ class ParseRequest(object):
                         self.__append_request()
 
 
-        # print(self.requests)
         self.__add_remanent_request()
         return self.requests
 
