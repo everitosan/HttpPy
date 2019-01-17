@@ -1,6 +1,6 @@
 import requests
 from Arguments import parse as parse_arguments
-from ParseRequest import parse_file, parse_args as parse_req_args
+from ParseRequest import ParseRequest, parse_args as parse_req_args
 from Logger import log_request
 
 args = parse_arguments()
@@ -26,7 +26,8 @@ def make_requests(requests_list):
 
 def main():
     if args.input:
-        requests = parse_file(args.input)
+        parser = ParseRequest()
+        requests = parser.parse_file(args.input)
     else:
         requests = [parse_req_args(args)]
 

@@ -1,13 +1,19 @@
 ## Example of request, every request starts with a comment
 GET http://127.0.0.1:8000
+Headers
+ContentType: application/json
+Authorization: Basic QWxhZGRpbjpvcGuIHN1c2FtZQ==
 
 ## This is a post request without data
 POST http://127.0.0.1:8000
-{}
 
 ## This is a post with data
 POST http://127.0.0.1:8000
+Headers
+ContentType: application/json
+Authorization: Basic QWxhZGRpbjpvcGuIHN1c2FtZQ==
 {
+  "id": 2,
   "user": "ever",
   "password": "12345"
 }
