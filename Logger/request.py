@@ -10,9 +10,9 @@ def log_request(req: dict, verbose: bool=False) -> None:
         body = req.get("body")
         title = req.get("title")
 
-        log_data.insert(0,"\n{} \n".format("*"*8) )
-        log_data.insert(1, "{}{} \n".format("*"*8, title.upper()))
-        log_data.insert(2,"{} \n".format("*"*8) )
+        log_data.insert(0,"\n{} \n".format("-"*8) )
+        log_data.insert(1, "{}{} \n".format("-"*8, title.upper()))
+        log_data.insert(2,"{} \n".format("-"*8) )
 
         if headers is not None:
             log_data.append("HEADERS: {}\n".format(str(headers)))

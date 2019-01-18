@@ -17,13 +17,9 @@ def make_request(req, verbose=False):
 
     try:
         if type in ["get", "delete"]:
-            res = req_fn(url)
+            res = req_fn(url, headers=headers)
         else:
             res = req_fn(url, data=data, headers=headers)
-            # if data is not None:
-            #     res = req_fn(url, data=data)
-            # else:
-                # res = req_fn(url)
         log_request_response(res, verbose)
     except requests.exceptions.ConnectionError as error:
         print("[X] Connection Error")
