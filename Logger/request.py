@@ -1,3 +1,5 @@
+from .generics import log_success, log_main
+
 def log_request(req: dict, verbose: bool=False) -> None:
     log_data = []
 
@@ -19,14 +21,15 @@ def log_request(req: dict, verbose: bool=False) -> None:
         if body is not None:
             log_data.append("BODY: {}\n".format(str(body)))
 
-    print("".join(log_data), end="", flush=True)
+    log_main("".join(log_data))
 
 def log_request_response(response, verbose=False):
     log_data = []
+
     if not verbose:
         log_data.append("<===== ")
         log_data.append("{}\n".format(response.status_code))
-        print("".join(log_data), end="", flush=True)
+        log_success("".join(log_data))
     else:
         __print_request_part("[{}] {}".format(response.status_code, response.url), "response")
         __print_request_part(response.headers, "headers")
@@ -38,6 +41,6 @@ def __print_request_part(data, part):
     print(data)
 
 def __print_request_part_header(part="extra"):
-    print("-"*30, end="")
-    print(" {} ".format(part.upper()), end="")
-    print("-"*30, flush=True)
+    log_success("-"*30, end="")
+    log_success(" {} ".format(part.upper()), end="")
+    log_success("-"*30, flush=True)

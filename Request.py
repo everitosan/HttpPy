@@ -2,7 +2,7 @@
 import requests
 
 # Modules
-from Logger import log_request, log_request_response
+from Logger import log_request, log_request_response, log_error
 
 def make_request(req, verbose=False):
     res = None
@@ -22,5 +22,5 @@ def make_request(req, verbose=False):
             res = req_fn(url, data=data, headers=headers)
         log_request_response(res, verbose)
     except requests.exceptions.ConnectionError as error:
-        print("[X] Connection Error")
-        print(error)
+        log_error("[X] Connection Error")
+        log_error(error)
