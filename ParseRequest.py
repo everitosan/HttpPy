@@ -67,7 +67,7 @@ class ParseRequest(object):
         if len(self.request.values()) > 0:
             self.__append_request()
 
-    def parse_file(self: object, file_path: str) -> list:
+    def parse_file(self: object, file_path: str, verbose: bool=False) -> list:
         file = open(file_path)
 
         for raw_line in file.readlines():
@@ -75,7 +75,7 @@ class ParseRequest(object):
             request_start, title = self.__is_request_defined(line)
             if request_start:
                 self.__add_remanent_request()
-                self.request = { "title": title }
+                self.request = { "title": title, "verbose": verbose }
                 self.request_start = request_start
 
             if self.request_start and not request_start:

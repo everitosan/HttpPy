@@ -41,4 +41,11 @@ def parse():
         required=False
     )
 
+    parser.add_argument(
+        "-p",
+        "--parallel",
+        action="store_true",
+        required=False
+    )
+
     return parser.parse_args()

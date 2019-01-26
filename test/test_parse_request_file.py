@@ -19,6 +19,7 @@ class TestParseRequestFile(unittest.TestCase):
 
     def __test_request(self, req_to_test, data={}):
         self.assertIsInstance(req_to_test, dict)
+        # print(data.items())
         for key, value in data.items():
             self.assertEqual(req_to_test[key], value)
 
