@@ -2,7 +2,7 @@
 from contextlib import wraps
 from time import time
 # Modules
-from Logger import log_accent
+from ..Logger import log_accent
 
 
 def timming(fn):

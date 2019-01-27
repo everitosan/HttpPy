@@ -1,8 +1,11 @@
-from Request import make_request
-from Arguments import parse as parse_arguments
-from ParseRequest import ParseRequest, parse_args as parse_req_args
-from decorators.timming import timming
+# Python
 from concurrent.futures import ThreadPoolExecutor
+# Modules
+from .Request import make_request
+from .Arguments import parse as parse_arguments
+from .ParseRequest import ParseRequest, parse_args as parse_req_args
+#Packages
+from .decorators.timming import timming
 
 
 def make_requests(requests_list, parallel=False):

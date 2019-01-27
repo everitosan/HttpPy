@@ -3,7 +3,7 @@ import requests
 from threading import Lock
 
 # Modules
-from Logger import log_request, log_request_response, log_error, log_warning
+from .Logger import log_request, log_request_response, log_error, log_warning
 
 lock_print = Lock()
 

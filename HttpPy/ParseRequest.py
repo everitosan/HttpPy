@@ -3,8 +3,8 @@ import json
 import re
 
 # Exceptions
-from Exceptions.RequestDefinition import RequestDefinitionException
-from Exceptions.KeyValDefinition import KeyValDefinitionException
+from .Exceptions.RequestDefinition import RequestDefinitionException
+from .Exceptions.KeyValDefinition import KeyValDefinitionException
 
 class ParseRequest(object):
 
