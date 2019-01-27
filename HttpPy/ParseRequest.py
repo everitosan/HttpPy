@@ -122,4 +122,6 @@ def parse_args(args):
     }
     if args.data:
         req["data"] = json.loads(args.data)
+    if args.verbose:
+        req["verbose"] = True
     return req
