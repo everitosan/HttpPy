@@ -14,7 +14,6 @@ def log_request(req: dict, verbose: bool=False) -> None:
         title = req.get("title")
 
         if title is not None:
-
             log_data.insert(0,"\n{} \n".format("-"*8) )
             log_data.insert(1, "{}{} \n".format("-"*8, title.upper()))
             log_data.insert(2,"{} \n".format("-"*8) )

@@ -1,12 +1,18 @@
-# HttpClient
+# HttpPy
 
-Python based HttpClient for more comfortable requests.
+Python based HttpPy for more comfortable requests.
+
+### Installation
+#### PiPY
+```sh
+(env)$ pip install HttpPy
+```
 
 ### Usage
 #### Single Request
 Sometimes you may just want to send a single request. To achieve that there are some flags ready to use.
 ```sh
-(env)$ python HttpClient -t post -u http://127.0.0.1:8000 -d '{"user": "eve", "password": "12345"}'
+(env)$ python -m HttpPy -t post -u http://127.0.0.1:8000 -d '{"user": "eve", "password": "12345"}'
 ```
  - **-t / --type**  
 Represents the request verb [ get | post | put | patch | options | delete ] to use.
@@ -19,7 +25,7 @@ Is the endpoint to reach.
 #### Several Requests
 If you need to send several requests, you can use a file as an input.
 ```sh
-(env)$ python HttpClient -i example.request
+(env)$ python -m HttpPy -i example.request
 ```
  - **-i / --input**  
  Is the path to a file that contains the requests especifications.
