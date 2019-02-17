@@ -6,7 +6,7 @@ def log_request(req: dict, verbose: bool=False) -> None:
     url = req.get("url")
     method = req.get("type")
     log_data.append("=====> ")
-    log_data.append(f"Making {method} request to: {url} \n")
+    log_data.append("Making {} request to: {} \n".format(method, url))
 
     if verbose:
         headers = req.get("headers")
