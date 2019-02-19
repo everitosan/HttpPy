@@ -24,7 +24,7 @@ def make_request(req):
             if type in ["get", "delete"]:
                 res = req_fn(url, headers=headers)
             else:
-                res = req_fn(url, data=data, headers=headers)
+                res = req_fn(url, json=data, headers=headers)
             with lock_print:
                 log_request(req, verbose)
                 log_request_response(res, verbose)
