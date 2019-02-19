@@ -1,3 +1,6 @@
+"""
+Parse parameters
+"""
 import argparse
 import sys
 
@@ -6,8 +9,10 @@ def __is_param_absent(abrv, cplt):
     is_in = abrv in sys.argv or cplt in sys.argv
     return not is_in
 
-
 def parse():
+    """
+    Main parser for inline params
+    """
     parser = argparse.ArgumentParser(description="Parse arguments to make requests")
     parser.add_argument(
         "-i",

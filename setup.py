@@ -7,7 +7,7 @@ README = (HERE/"README.md").read_text()
 
 setup(
     name="HttpPy",
-    version="0.0.1",
+    version="0.0.2",
     description="More comfortable requests with python",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -18,7 +18,7 @@ setup(
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.6",
     ],
     packages=find_packages(exclude=("test", "env", ".git")),
     include_package_data=True,

@@ -1,5 +1,5 @@
 """
 Version:
 --------
-- HttpPy v0.0.1
+- HttpPy v0.0.2
 """
