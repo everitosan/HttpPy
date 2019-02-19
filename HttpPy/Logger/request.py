@@ -1,17 +1,16 @@
 from .generics import log_success, log_main
 
-def log_request(req: dict, verbose: bool=False) -> None:
+def log_request(req, verbose: bool=False) -> None:
     log_data = []
-
-    url = req.get("url")
-    method = req.get("type")
+    url = req.url
+    method = req.method
     log_data.append("=====> ")
     log_data.append("Making {} request to: {} \n".format(method, url))
 
     if verbose:
-        headers = req.get("headers")
-        body = req.get("body")
-        title = req.get("title")
+        headers = req.headers
+        body = req.body.decode("utf-8")
+        title = req.title
 
         if title is not None:
             log_data.insert(0,"\n{} \n".format("-"*8) )

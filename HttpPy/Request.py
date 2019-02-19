@@ -12,7 +12,7 @@ def make_request(req):
     type = req.get("type")
     url = req.get("url")
     headers = req.get("headers")
-    data = req.get("data")
+    body = req.get("body")
     verbose = req.get("verbose")
 
     req_fn = getattr(requests, type, None)
@@ -24,9 +24,10 @@ def make_request(req):
             if type in ["get", "delete"]:
                 res = req_fn(url, headers=headers)
             else:
-                res = req_fn(url, json=data, headers=headers)
+                res = req_fn(url, json=body, headers=headers)
             with lock_print:
-                log_request(req, verbose)
+                res.request.title = req.get("title")
+                log_request(res.request, verbose)
                 log_request_response(res, verbose)
         except requests.exceptions.ConnectionError as error:
             log_error("[X] Connection Error")

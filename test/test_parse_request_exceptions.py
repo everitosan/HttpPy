@@ -1,7 +1,7 @@
 # Python
 import unittest
 # Modules
-from ParseRequest import ParseRequest
+from HttpPy.ParseRequest import ParseRequest
 
 
 class TestExceptionsParseRequestFile(unittest.TestCase):
