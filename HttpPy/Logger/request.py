@@ -1,4 +1,16 @@
+# Python
+import json
+# Modules
 from .generics import log_success, log_main
+
+def __parse_body(response):
+    content_type = response.headers.get('Content-Type')
+    if response.text and content_type:
+        if "application/json" in content_type:
+            return json.dumps(json.loads(response.text), indent=2)
+        else:
+            return response.text
+    return ""
 
 def log_request(req, verbose: bool=False) -> None:
     log_data = []
@@ -9,7 +21,7 @@ def log_request(req, verbose: bool=False) -> None:
 
     if verbose:
         headers = req.headers
-        body = req.body.decode("utf-8")
+        body = req.body
         title = req.title
 
         if title is not None:
@@ -20,7 +32,8 @@ def log_request(req, verbose: bool=False) -> None:
         if headers is not None:
             log_data.append("HEADERS: {}\n".format(str(headers)))
         if body is not None:
-            log_data.append("BODY: {}\n".format(str(body)))
+            json_body = body.decode("utf-8")
+            log_data.append("BODY: {}\n".format(json_body))
 
     log_main("".join(log_data))
 
@@ -34,7 +47,7 @@ def log_request_response(response, verbose=False):
     else:
         __print_request_part("[{}] {}".format(response.status_code, response.url), "response")
         __print_request_part(response.headers, "headers")
-        __print_request_part(response.text, "body")
+        __print_request_part(__parse_body(response), "body")
 
 
 def __print_request_part(data, part):
