@@ -9,6 +9,7 @@ def __is_param_absent(abrv, cplt):
     is_in = abrv in sys.argv or cplt in sys.argv
     return not is_in
 
+
 def parse():
     """
     Main parser for inline params
@@ -33,8 +34,8 @@ def parse():
         required=__is_param_absent("-i", "--input")
     )
     parser.add_argument(
-        "-d",
-        "--data",
+        "-b",
+        "--body",
         type=str,
         required=False
     )

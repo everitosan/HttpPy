@@ -12,13 +12,13 @@ Python based HttpPy for more comfortable requests.
 #### Single Request
 Sometimes you may just want to send a single request. To achieve that there are some flags ready to use.
 ```sh
-(env)$ python -m HttpPy -t post -u http://127.0.0.1:8000 -d '{"user": "eve", "password": "12345"}'
+(env)$ python -m HttpPy -t post -u http://127.0.0.1:8000 -b '{"user": "eve", "password": "12345"}'
 ```
  - **-t / --type**  
 Represents the request verb [ get | post | put | patch | options | delete ] to use.
  - **-u / --url**  
 Is the endpoint to reach.
- - **-d / --data**  
+ - **-b / --body**  
  Represents the body of the request.
 
 

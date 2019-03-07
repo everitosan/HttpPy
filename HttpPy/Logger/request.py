@@ -3,6 +3,7 @@ import json
 # Modules
 from .generics import log_success, log_main
 
+
 def __parse_body(response):
     content_type = response.headers.get('Content-Type')
     if response.text and content_type:
@@ -12,7 +13,8 @@ def __parse_body(response):
             return response.text
     return ""
 
-def log_request(req, verbose: bool=False) -> None:
+
+def log_request(req, verbose: bool = False) -> None:
     log_data = []
     url = req.url
     method = req.method
@@ -25,9 +27,9 @@ def log_request(req, verbose: bool=False) -> None:
         title = req.title
 
         if title is not None:
-            log_data.insert(0,"\n{} \n".format("-"*8) )
+            log_data.insert(0, "\n{} \n".format("-"*8))
             log_data.insert(1, "{}{} \n".format("-"*8, title.upper()))
-            log_data.insert(2,"{} \n".format("-"*8) )
+            log_data.insert(2, "{} \n".format("-"*8))
 
         if headers is not None:
             log_data.append("HEADERS: {}\n".format(str(headers)))
@@ -36,6 +38,7 @@ def log_request(req, verbose: bool=False) -> None:
             log_data.append("BODY: {}\n".format(json_body))
 
     log_main("".join(log_data))
+
 
 def log_request_response(response, verbose=False):
     log_data = []
@@ -53,6 +56,7 @@ def log_request_response(response, verbose=False):
 def __print_request_part(data, part):
     __print_request_part_header(part)
     print(data)
+
 
 def __print_request_part_header(part="extra"):
     log_success("-"*30, end="")

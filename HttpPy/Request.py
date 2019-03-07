@@ -7,7 +7,8 @@ from .Logger import log_request, log_request_response, log_error, log_warning
 
 lock_print = Lock()
 
-def make_request(req: dict, should_log: bool=True):
+
+def make_request(req: dict, should_log: bool = True):
     res = None
     type = req.get("type")
     url = req.get("url")
@@ -24,6 +25,7 @@ def make_request(req: dict, should_log: bool=True):
             if type in ["get", "delete"]:
                 res = req_fn(url, headers=headers)
             else:
+                print(body)
                 res = req_fn(url, json=body, headers=headers)
 
             res.request.title = req.get("title")

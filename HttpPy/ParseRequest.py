@@ -6,6 +6,7 @@ import re
 from .Exceptions.RequestDefinition import RequestDefinitionException
 from .Exceptions.KeyValDefinition import KeyValDefinitionException
 
+
 class ParseRequest(object):
 
     def __init__(self: object) -> None:
@@ -17,7 +18,7 @@ class ParseRequest(object):
         self.body_finished = False
         # Patterns
         self.break_line_pattern = re.compile("\n")
-        self.spaces_pattern= re.compile(" ")
+        self.spaces_pattern = re.compile(" ")
 
     def __append_request(self: object) -> None:
         self.requests.append(self.request)
@@ -33,12 +34,14 @@ class ParseRequest(object):
         if "## " in line:
             return (True, line.split("## ")[1])
         else:
-             return (False, None)
+            return (False, None)
 
     def __normalize_request(self: object, line: str) -> tuple:
         type_url = line.split(" ")
         if len(type_url) != 2:
-            raise RequestDefinitionException("[GET, POST, PUT, PATCH, DELETE] URL format is required after a request definition")
+            raise RequestDefinitionException(
+                "[GET, POST, PUT, PATCH, DELETE] URL format is required after a request definition"
+            )
         return (
             type_url[0].lower(),
             type_url[1].lower()
@@ -57,7 +60,7 @@ class ParseRequest(object):
     def __check_header_starts(self: object, line: str) -> bool:
         return "HEADER" in line.upper()
 
-    def __check_body_starts(self: object, line:str) -> bool:
+    def __check_body_starts(self: object, line: str) -> bool:
         return "{" in line
 
     def __check_body_ends(self: object, line: str) -> bool:
@@ -67,7 +70,7 @@ class ParseRequest(object):
         if len(self.request.values()) > 0:
             self.__append_request()
 
-    def parse_file(self: object, file_path: str, verbose: bool=False) -> list:
+    def parse_file(self: object, file_path: str, verbose: bool = False) -> list:
         file = open(file_path)
 
         for raw_line in file.readlines():
@@ -75,11 +78,11 @@ class ParseRequest(object):
             request_start, title = self.__is_request_defined(line)
             if request_start:
                 self.__add_remanent_request()
-                self.request = { "title": title, "verbose": verbose }
+                self.request = {"title": title, "verbose": verbose}
                 self.request_start = request_start
 
             if self.request_start and not request_start:
-                ## Request was detected previuosly
+                # Request was detected previuosly
                 current_request = self.request
 
                 type = current_request.get("type")
@@ -94,22 +97,21 @@ class ParseRequest(object):
                 if header is None and self.__check_header_starts(line):
                     current_request["headers"] = {}
                 elif header is not None and not self.header_finished:
-                    if  not self.__check_is_empty(line) and not self.__check_body_starts(line) :
+                    if not self.__check_is_empty(line) and not self.__check_body_starts(line):
                         key, val = self.__parse_key_val_line(line, "header")
-                        current_request["headers"][key] =  val
+                        current_request["headers"][key] = val
                     else:
                         self.header_finished = True
 
                 if body is None and self.__check_body_starts(line):
-                        current_request["body"] = line
+                    current_request["body"] = line
                 elif body is not None and not self.body_finished:
                     current_request["body"] += line
                     if self.__check_body_ends(line):
                         current_request["body"] = json.loads(current_request["body"])
                         self.body_finished = True
-                        ## adds request to list
+                        # adds request to list
                         self.__append_request()
-
 
         self.__add_remanent_request()
         return self.requests
@@ -120,8 +122,9 @@ def parse_args(args):
         "type": args.type,
         "url": args.url
     }
-    if args.data:
-        req["data"] = json.loads(args.data)
+    if args.body:
+        req["body"] = json.loads(args.body)
     if args.verbose:
         req["verbose"] = True
+
     return req

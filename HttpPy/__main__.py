@@ -4,7 +4,8 @@ from concurrent.futures import ThreadPoolExecutor
 from .Request import make_request
 from .Arguments import parse as parse_arguments
 from .ParseRequest import ParseRequest, parse_args as parse_req_args
-#Packages
+
+# Packages
 from .decorators.timming import timming
 
 
@@ -15,6 +16,7 @@ def make_requests(requests_list, parallel=False):
     else:
         for req in requests_list:
             make_request(req)
+
 
 @timming
 def main():
