@@ -11,7 +11,7 @@ POST http://127.0.0.1:8000
 POST http://127.0.0.1:8000
 Headers
 ContentType: application/json
-Authorization: Basic QWxhZGRpbjpvcGuIHN1c2FtZQ==
+Authorization: Basic QWxhZGRpbjpvcGuIHN1c2FtZQ== 
 {
   "id": 2,
   "user": "ever",

@@ -6,10 +6,11 @@ from HttpPy.Request import make_request
 
 
 class TestRequest(unittest.TestCase):
-    def __test_info_match(self,original_request, made_request):
+    def __test_info_match(self, original_request, made_request):
         self.assertEqual(made_request.title, original_request.get('title'))
         self.assertEqual(made_request.url, original_request.get('url'))
-        self.assertEqual(made_request.method.lower(), original_request.get('type').lower())
+        self.assertEqual(
+            made_request.method.lower(), original_request.get('type').lower())
 
     def test_get_request(self):
         parser = ParseRequest()
@@ -21,7 +22,6 @@ class TestRequest(unittest.TestCase):
         made_request = res.request
 
         self.__test_info_match(original_request, made_request)
-
 
     def test_post_request(self):
         parser = ParseRequest()
