@@ -40,7 +40,8 @@ class ParseRequest(object):
         type_url = line.split(" ")
         if len(type_url) != 2:
             raise RequestDefinitionException(
-                "[GET, POST, PUT, PATCH, DELETE] URL format is required after a request definition"
+                """[GET, POST, PUT, PATCH, DELETE] URL format is
+                    required after a request definition"""
             )
         return (
             type_url[0].lower(),
@@ -48,11 +49,11 @@ class ParseRequest(object):
         )
 
     def __parse_key_val_line(self: object, line: str, type: str) -> tuple:
-        no_spaces_line = re.sub(self.spaces_pattern, "", line)
-        no_quotes_line = re.sub(r"\"", "", no_spaces_line)
+        # no_spaces_line = re.sub(self.spaces_pattern, "", line)
+        no_quotes_line = re.sub(r"\"", "", line)
         header_key_val = no_quotes_line.split(":")
         if len(header_key_val) == 2:
-            return (header_key_val[0], header_key_val[1])
+            return (header_key_val[0].strip(), header_key_val[1].strip())
 
     def __check_is_empty(self: object, line: str) -> bool:
         return line == "\n" or line == ""
@@ -70,7 +71,8 @@ class ParseRequest(object):
         if len(self.request.values()) > 0:
             self.__append_request()
 
-    def parse_file(self: object, file_path: str, verbose: bool = False) -> list:
+    def parse_file(
+            self: object, file_path: str, verbose: bool = False) -> list:
         file = open(file_path)
 
         for raw_line in file.readlines():
@@ -97,7 +99,8 @@ class ParseRequest(object):
                 if header is None and self.__check_header_starts(line):
                     current_request["headers"] = {}
                 elif header is not None and not self.header_finished:
-                    if not self.__check_is_empty(line) and not self.__check_body_starts(line):
+                    if (not self.__check_is_empty(line)
+                            and not self.__check_body_starts(line)):
                         key, val = self.__parse_key_val_line(line, "header")
                         current_request["headers"][key] = val
                     else:
@@ -108,7 +111,8 @@ class ParseRequest(object):
                 elif body is not None and not self.body_finished:
                     current_request["body"] += line
                     if self.__check_body_ends(line):
-                        current_request["body"] = json.loads(current_request["body"])
+                        current_body = current_request["body"]
+                        current_request["body"] = json.loads(current_body)
                         self.body_finished = True
                         # adds request to list
                         self.__append_request()
