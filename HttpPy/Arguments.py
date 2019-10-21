@@ -14,7 +14,8 @@ def parse():
     """
     Main parser for inline params
     """
-    parser = argparse.ArgumentParser(description="Parse arguments to make requests")
+    parser = argparse.ArgumentParser(
+        description="Parse arguments to make requests")
     parser.add_argument(
         "-i",
         "--input",
@@ -50,6 +51,13 @@ def parse():
     parser.add_argument(
         "-p",
         "--parallel",
+        action="store_true",
+        required=False
+    )
+
+    parser.add_argument(
+        "-f",
+        "--force",
         action="store_true",
         required=False
     )

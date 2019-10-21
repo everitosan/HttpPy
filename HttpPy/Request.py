@@ -1,6 +1,7 @@
 # Python
 import requests
 from threading import Lock
+from .Arguments import parse as parse_arguments
 
 # Modules
 from .Logger import log_request, log_request_response, log_error, log_warning
@@ -8,7 +9,16 @@ from .Logger import log_request, log_request_response, log_error, log_warning
 lock_print = Lock()
 
 
-def make_request(req: dict, should_log: bool = True):
+def make_request_args(req: dict, should_log: bool = True):
+    args = parse_arguments()
+    verify = True
+    if args and args.force:
+        verify = False
+    return make_request(req, should_log, verify)
+
+
+def make_request(req: dict, should_log: bool = True, verify: bool = True):
+
     res = None
     type = req.get("type")
     url = req.get("url")
@@ -23,10 +33,10 @@ def make_request(req: dict, should_log: bool = True):
 
         try:
             if type in ["get", "delete"]:
-                res = req_fn(url, headers=headers)
+                res = req_fn(url, headers=headers, verify=verify)
             else:
                 print(body)
-                res = req_fn(url, json=body, headers=headers)
+                res = req_fn(url, json=body, headers=headers, verify=verify)
 
             res.request.title = req.get("title")
 

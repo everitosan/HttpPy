@@ -1,7 +1,7 @@
 # Python
 from concurrent.futures import ThreadPoolExecutor
 # Modules
-from .Request import make_request
+from .Request import make_request_args
 from .Arguments import parse as parse_arguments
 from .ParseRequest import ParseRequest, parse_args as parse_req_args
 
@@ -12,10 +12,10 @@ from .decorators.timming import timming
 def make_requests(requests_list, parallel=False):
     if parallel:
         with ThreadPoolExecutor(max_workers=5) as executor:
-            executor.map(make_request, requests_list)
+            executor.map(make_request_args, requests_list)
     else:
         for req in requests_list:
-            make_request(req)
+            make_request_args(req)
 
 
 @timming
