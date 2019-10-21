@@ -3,7 +3,7 @@
 Python based HttpPy for more comfortable requests.
 
 ### Installation
-#### PiPY
+#### PyPi
 ```sh
 (env)$ pip install HttpPy
 ```
@@ -49,3 +49,5 @@ There are two optional flags that may help you:
 The presence of this flag will indicate that the especifications of requests and a more detailed reponse will be printed in the screen.
 - **-p / --parallel**  
 This flag is intented to help with performance and excecution times. Internally indicates that several threads are going to be used for the requests.
+- **-f / --force**  
+This flag forces the request to ignore ssl verification.

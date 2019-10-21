@@ -7,7 +7,7 @@ README = (HERE/"README.md").read_text()
 
 setup(
     name="HttpPy",
-    version="0.0.7",
+    version="0.0.9",
     description="More comfortable requests with python",
     long_description=README,
     long_description_content_type="text/markdown",
