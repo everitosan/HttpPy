@@ -112,8 +112,14 @@ class ParseRequest(object):
                     current_request["body"] += line
                     if self.__check_body_ends(line):
                         current_body = current_request["body"]
+
+                        count_braces_start = current_body.count('{')
+                        count_braces_end = current_body.count('}')
+
+                        self.body_finished = count_braces_start == count_braces_end
+                        if not self.body_finished:
+                            continue
                         current_request["body"] = json.loads(current_body)
-                        self.body_finished = True
                         # adds request to list
                         self.__append_request()
 
