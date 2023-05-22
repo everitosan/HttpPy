@@ -1,5 +1,5 @@
 colorama==0.4.1
 nose2==0.8.0
-requests==2.21.0
+requests==2.31.0
 twine==1.13.0
 pycodestyle==2.5.0
